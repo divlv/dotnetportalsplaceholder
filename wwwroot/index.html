@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portals App Placeholder</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111317;
+      --bg-alt: #1a1d23;
+      --surface: rgba(28, 33, 42, 0.92);
+      --surface-strong: rgba(37, 43, 54, 0.98);
+      --ink: #f3eee7;
+      --muted: #b6ab9b;
+      --accent: #ff8b36;
+      --accent-strong: #ff5f2e;
+      --line: rgba(255, 255, 255, 0.12);
+      --glow: 0 22px 44px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 139, 54, 0.18), transparent 24%),
+        radial-gradient(circle at 85% 10%, rgba(58, 124, 255, 0.14), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, #0c0e12 100%);
+      padding: 28px;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero,
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--glow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero {
+      padding: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255, 95, 46, 0.24), transparent 66%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+      box-shadow: 0 0 18px rgba(255, 139, 54, 0.5);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .host-status {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.6;
+    }
+
+    .meta {
+      margin-top: 20px;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .panel {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .panel-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    button {
+      border: 0;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font: inherit;
+      font-weight: 700;
+      color: #111317;
+      background: linear-gradient(135deg, #ffd56c 0%, var(--accent) 55%, var(--accent-strong) 100%);
+      cursor: pointer;
+      transition: transform 120ms ease, filter 120ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    button:disabled {
+      cursor: progress;
+      transform: none;
+      filter: saturate(0.8);
+      opacity: 0.82;
+    }
+
+    .target {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .result-box {
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--surface-strong);
+      padding: 18px;
+      min-height: 180px;
+    }
+
+    .result-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .error {
+      color: #ffb1a0;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        Portals App Placeholder
+      </div>
+      <h1>Portals Front Door Mirror</h1>
+      <div id="host-status" class="host-status">Loading access context...</div>
+      <div class="meta">
+        <div>Current host: <span id="current-host">Loading...</span></div>
+        <div>Rendered at UTC: <span id="rendered-at">Loading...</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Database Probe</div>
+          <div class="target">Target: <code>https://m1.caservices.visiondsm.com/system/</code></div>
+        </div>
+        <button id="load-data" type="button">Get Data from API App / Database</button>
+      </div>
+
+      <div class="result-box" aria-live="polite">
+        <span class="result-label">API Response</span>
+        <pre id="result">Click the button to load data.</pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const hostStatus = document.getElementById("host-status");
+    const currentHost = document.getElementById("current-host");
+    const renderedAt = document.getElementById("rendered-at");
+    const button = document.getElementById("load-data");
+    const result = document.getElementById("result");
+
+    async function loadContext() {
+      try {
+        const response = await fetch("/api/context", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        const payload = await response.json();
+        hostStatus.textContent = payload.message;
+        currentHost.textContent = payload.host;
+        renderedAt.textContent = payload.renderedAtUtc;
+      } catch (error) {
+        hostStatus.textContent = `This is Portals App. Access context could not be resolved: ${error instanceof Error ? error.message : String(error)}`;
+        currentHost.textContent = window.location.hostname;
+        renderedAt.textContent = "Unavailable";
+      }
+    }
+
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      result.classList.remove("error");
+      result.textContent = "Loading data from API App / Database...";
+
+      try {
+        const response = await fetch("/api/data", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        const payload = await response.json();
+
+        if (!response.ok || !payload.ok) {
+          result.classList.add("error");
+          result.textContent = [
+            `Request failed with status ${payload.statusCode ?? response.status}.`,
+            payload.reasonPhrase ?? "Unknown error",
+            "",
+            payload.data ?? ""
+          ].join("\n");
+          return;
+        }
+
+        result.textContent = payload.data;
+      } catch (error) {
+        result.classList.add("error");
+        result.textContent = `Unexpected error: ${error instanceof Error ? error.message : String(error)}`;
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    loadContext();
+  </script>
+</body>
+</html>
