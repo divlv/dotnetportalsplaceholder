@@ -6,17 +6,18 @@
   <title>Portals App Placeholder</title>
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #111317;
-      --bg-alt: #1a1d23;
-      --surface: rgba(28, 33, 42, 0.92);
-      --surface-strong: rgba(37, 43, 54, 0.98);
-      --ink: #f3eee7;
-      --muted: #b6ab9b;
-      --accent: #ff8b36;
-      --accent-strong: #ff5f2e;
-      --line: rgba(255, 255, 255, 0.12);
-      --glow: 0 22px 44px rgba(0, 0, 0, 0.35);
+      color-scheme: light;
+      --bg: #f8f4ec;
+      --bg-alt: #efe7d8;
+      --surface: rgba(255, 252, 246, 0.94);
+      --surface-strong: rgba(255, 248, 238, 0.98);
+      --ink: #262119;
+      --muted: #756a5b;
+      --accent: #ff944d;
+      --accent-strong: #dd5c2b;
+      --accent-cool: #0f8a94;
+      --line: rgba(38, 33, 25, 0.12);
+      --glow: 0 24px 46px rgba(93, 74, 43, 0.12);
     }
 
     * {
@@ -29,9 +30,9 @@
       font-family: "Trebuchet MS", Verdana, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 20%, rgba(255, 139, 54, 0.18), transparent 24%),
-        radial-gradient(circle at 85% 10%, rgba(58, 124, 255, 0.14), transparent 28%),
-        linear-gradient(180deg, var(--bg) 0%, #0c0e12 100%);
+        radial-gradient(circle at 15% 18%, rgba(255, 148, 77, 0.2), transparent 24%),
+        radial-gradient(circle at 86% 10%, rgba(15, 138, 148, 0.14), transparent 28%),
+        linear-gradient(180deg, #fffdfa 0%, var(--bg) 58%, var(--bg-alt) 100%);
       padding: 28px;
     }
 
@@ -48,7 +49,7 @@
       border: 1px solid var(--line);
       border-radius: 28px;
       box-shadow: var(--glow);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
     }
 
     .hero {
@@ -63,7 +64,7 @@
       inset: auto -10% -35% auto;
       width: 260px;
       height: 260px;
-      background: radial-gradient(circle, rgba(255, 95, 46, 0.24), transparent 66%);
+      background: radial-gradient(circle, rgba(15, 138, 148, 0.18), transparent 66%);
       pointer-events: none;
     }
 
@@ -74,7 +75,7 @@
       margin-bottom: 18px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.74);
       color: var(--muted);
       font-size: 0.82rem;
       letter-spacing: 0.14em;
@@ -86,7 +87,7 @@
       height: 10px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-      box-shadow: 0 0 18px rgba(255, 139, 54, 0.5);
+      box-shadow: 0 0 16px rgba(221, 92, 43, 0.28);
     }
 
     h1 {
@@ -137,8 +138,8 @@
       padding: 14px 18px;
       font: inherit;
       font-weight: 700;
-      color: #111317;
-      background: linear-gradient(135deg, #ffd56c 0%, var(--accent) 55%, var(--accent-strong) 100%);
+      color: #fff9f3;
+      background: linear-gradient(135deg, var(--accent-cool) 0%, var(--accent) 55%, var(--accent-strong) 100%);
       cursor: pointer;
       transition: transform 120ms ease, filter 120ms ease;
     }
@@ -188,7 +189,7 @@
     }
 
     .error {
-      color: #ffb1a0;
+      color: #a33e22;
     }
   </style>
 </head>

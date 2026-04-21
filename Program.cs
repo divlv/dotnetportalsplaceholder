@@ -14,12 +14,14 @@ app.UseStaticFiles();
 
 app.MapGet("/api/context", (HttpContext context) =>
 {
-    var hostInfo = DescribeHost(context.Request.Host.Host);
+    var effectiveHost = GetEffectiveHost(context.Request);
+    var hostInfo = DescribeHost(effectiveHost);
 
     return Results.Json(new
     {
         message = hostInfo.Message,
-        host = context.Request.Host.Host,
+        host = effectiveHost,
+        backendHost = context.Request.Host.Host,
         accessMode = hostInfo.AccessMode,
         accessValue = hostInfo.AccessValue,
         renderedAtUtc = DateTimeOffset.UtcNow.ToString("u")
@@ -86,6 +88,20 @@ app.MapFallbackToFile("index.html");
 
 app.Run();
 
+static string GetEffectiveHost(HttpRequest request)
+{
+    if (request.Headers.TryGetValue("X-Forwarded-Host", out var forwardedHostValues))
+    {
+        var forwardedHost = forwardedHostValues.ToString().Split(',')[0].Trim();
+        if (!string.IsNullOrWhiteSpace(forwardedHost))
+        {
+            return forwardedHost.Split(':')[0];
+        }
+    }
+
+    return request.Host.Host;
+}
+
 static HostInfo DescribeHost(string host)
 {
     if (Regex.IsMatch(host, @"^portals[^.]*\.ca\.cloud\.visiondsm\.com$", RegexOptions.IgnoreCase))
@@ -108,7 +124,7 @@ static HostInfo DescribeHost(string host)
         return new HostInfo(
             "wildcard",
             wildcardSubdomain,
-            $"This is Portals App. You are accessing via {wildcardSubdomain}.");
+            $"This is Portals App. You are accessing via wildcard subdomain {wildcardSubdomain}.");
     }
 
     return new HostInfo(
