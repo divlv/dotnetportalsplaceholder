@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - aegcavdsmmr1porapp
 on:
   push:
     branches:
-      - main
+      - madddin
   workflow_dispatch:
 
 jobs:
